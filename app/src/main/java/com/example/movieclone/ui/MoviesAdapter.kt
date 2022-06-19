@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
+import com.example.movieclone.data.Constants
 import com.example.movieclone.data.MovieList
 import com.example.movieclone.databinding.MovieItemBinding
 
@@ -16,7 +17,8 @@ class MoviesAdapter : ListAdapter<MovieList, MoviesAdapter.MoviesViewHolder>(MOV
     class MoviesViewHolder(private val itemViewBinding: MovieItemBinding) : RecyclerView.ViewHolder(itemViewBinding.root){
 
         fun binds(movie : MovieList?){
-            Glide.with(itemViewBinding.root).load(movie?.poster_path).into(itemViewBinding.moviePoster)
+            Glide.with(itemViewBinding.root).load(Constants.BASE_IMAGE_URL
+                    + movie?.poster_path).into(itemViewBinding.moviePoster)
         }
     }
 

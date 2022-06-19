@@ -3,6 +3,7 @@ package com.example.movieclone.di
 import android.app.Application
 import android.content.res.Resources
 import com.example.movieclone.BuildConfig
+import com.example.movieclone.data.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Component
@@ -28,7 +29,7 @@ class NetworkModule {
     @Singleton
     fun getRetrofitInstance(okHttpClient: OkHttpClient,gson:Gson): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/movie/")
+            .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
