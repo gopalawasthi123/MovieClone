@@ -1,5 +1,8 @@
 package com.example.movieclone.di
 
+import android.app.Application
+import android.content.res.Resources
+import com.example.movieclone.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Component
@@ -13,6 +16,7 @@ import okhttp3.Request
 import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -44,7 +48,7 @@ class NetworkModule {
             val origHttpUrl = request.url
 
             val url = origHttpUrl.newBuilder()
-                .addQueryParameter("api_key","")
+                .addQueryParameter("api_key",BuildConfig.API_KEY)
                 .build()
 
             val requestBuilder = request.newBuilder().url(url)

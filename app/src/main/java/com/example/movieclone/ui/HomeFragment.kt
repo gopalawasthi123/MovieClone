@@ -30,11 +30,9 @@ class HomeFragment : Fragment() {
 
         val view = homeBinding.root
 
-        homeBinding.btnFetchRecords.setOnClickListener{
             viewmodel.movieList.observe(viewLifecycleOwner) {
                 Log.d("movies",it.toString())
             }
-        }
         lifecycleScope.launchWhenStarted {
             viewmodel.getMoviesListFromRepository()
         }
