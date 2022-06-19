@@ -7,9 +7,31 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment">
 
+    <TextView
+        android:padding="@dimen/padding4"
+        android:id="@+id/txtPopularMovies"
+        android:textStyle="bold"
+        android:textSize="@dimen/textSize20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/popular_movies"/>
+    <TextView
+        android:textSize="@dimen/textSize20"
+        android:padding="@dimen/padding4"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtPopularMovies"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="end"
+        android:text="@string/show_All"
+        android:id="@+id/showAll_PopularMovies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
     <!-- TODO: Update blank fragment layout -->
    <androidx.recyclerview.widget.RecyclerView
-       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/txtPopularMovies"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        android:id="@+id/recyclerVIew"
