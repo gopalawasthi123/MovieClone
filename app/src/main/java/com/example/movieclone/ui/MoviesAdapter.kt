@@ -1,23 +1,35 @@
 package com.example.movieclone.ui
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
+import com.bumptech.glide.Glide
 import com.example.movieclone.data.MovieList
+import com.example.movieclone.databinding.MovieItemBinding
 
 class MoviesAdapter : ListAdapter<MovieList, MoviesAdapter.MoviesViewHolder>(MOVIES_COMPARATOR) {
 
-    class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class MoviesViewHolder(private val itemViewBinding: MovieItemBinding) : RecyclerView.ViewHolder(itemViewBinding.root){
+
+        fun binds(movie : MovieList?){
+            Glide.with(itemViewBinding.root).load(movie?.poster_path).into(itemViewBinding.moviePoster)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
-        TODO("Not yet implemented")
+
+        val viewBinding = MovieItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return MoviesViewHolder(viewBinding)
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        TODO("Not yet implemented")
+
+        var item = getItem(position)
+        holder.binds(item)
     }
 
 
