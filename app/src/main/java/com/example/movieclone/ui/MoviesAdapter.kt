@@ -19,6 +19,7 @@ class MoviesAdapter : ListAdapter<MovieList, MoviesAdapter.MoviesViewHolder>(MOV
         fun binds(movie : MovieList?){
             Glide.with(itemViewBinding.root).load(Constants.BASE_IMAGE_URL
                     + movie?.poster_path).into(itemViewBinding.moviePoster)
+            itemViewBinding.movieTxt.text = movie?.title
         }
     }
 
