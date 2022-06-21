@@ -8,6 +8,7 @@
     android:background="@color/card_background"
     tools:context=".ui.HomeFragment">
 
+
     <TextView
         android:padding="@dimen/padding4"
         android:id="@+id/txtPopularMovies"

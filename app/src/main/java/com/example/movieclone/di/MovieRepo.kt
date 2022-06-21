@@ -7,8 +7,9 @@ import retrofit2.http.Query
 
 interface MovieRepo {
 
-  @GET("popular/")
+  @GET("movie/popular/")
   suspend fun getPopularMovies(@Query("page")page : Int) : Response<Movies>
 
-
+  @GET("search/movie")
+  suspend fun searchMovies(@Query("query") query: String) : Response<Movies>
 }

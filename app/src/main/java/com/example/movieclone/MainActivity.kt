@@ -2,17 +2,17 @@ package com.example.movieclone
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.movieclone.databinding.ActivityMainBinding
 import com.example.movieclone.ui.HomeFragment
+import com.example.movieclone.ui.SearchFragment
 import com.example.movieclone.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    private val mainViewModel : MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,12 @@ class MainActivity : AppCompatActivity() {
         fm.beginTransaction()
             .replace(R.id.fragmentContainerView,homeFragment)
             .commit()
+
+        binding.fab.setOnClickListener{
+            val searchFragment = SearchFragment()
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,searchFragment)
+                .addToBackStack(null).commit()
+        }
     }
 
 }

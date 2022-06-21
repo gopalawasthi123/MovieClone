@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/activity_main.xml" value="0.30823863636363635" />
+        <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/full_movie_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/fullmovie_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/MeetApp/AndroidStudioProjects/MovieClone/app/src/main/res/layout/movie_item.xml" value="0.25416666666666665" />
