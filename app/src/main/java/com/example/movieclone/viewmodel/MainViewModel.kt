@@ -2,6 +2,8 @@ package com.example.movieclone.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.example.movieclone.data.MovieList
 import com.example.movieclone.data.Movies
 import com.example.movieclone.repo.MovieRepository
@@ -21,4 +23,7 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
        }
 
     }
+
+    val fullMovieList = movieRepository.getAllMovies().cachedIn(viewModelScope)
+
 }

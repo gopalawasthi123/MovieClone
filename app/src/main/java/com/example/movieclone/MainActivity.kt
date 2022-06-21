@@ -3,6 +3,7 @@ package com.example.movieclone
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.movieclone.databinding.ActivityMainBinding
 import com.example.movieclone.ui.HomeFragment
 import com.example.movieclone.viewmodel.MainViewModel

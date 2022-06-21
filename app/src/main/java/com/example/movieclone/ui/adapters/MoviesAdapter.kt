@@ -1,12 +1,10 @@
-package com.example.movieclone.ui
+package com.example.movieclone.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.example.movieclone.data.Constants
 import com.example.movieclone.data.MovieList
