@@ -8,4 +8,6 @@ interface MovieRepo {
 
   @GET("popular/")
   suspend fun getPopularMovies() : Response<Movies>
+
+
 }

@@ -16,8 +16,6 @@ class AllMoviesFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-
-
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
