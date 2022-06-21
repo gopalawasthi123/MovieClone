@@ -13,8 +13,9 @@ import javax.inject.Inject
 
 class MovieRepository @Inject constructor(private val movieRepo: MovieRepo) {
 
+
     suspend fun getPopularMovies() : List<MovieList>? {
-        movieRepo.getPopularMovies().let {
+        movieRepo.getPopularMovies(Constants.STARTING_PAGE).let {
             if(it.isSuccessful){
              return it.body()?.results
             }

@@ -25,13 +25,8 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val fm = supportFragmentManager
         fm.beginTransaction()
-            .add(R.id.fragmentContainerView,homeFragment,"HomeFragment")
-            .addToBackStack(null)
+            .replace(R.id.fragmentContainerView,homeFragment)
             .commit()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
 }

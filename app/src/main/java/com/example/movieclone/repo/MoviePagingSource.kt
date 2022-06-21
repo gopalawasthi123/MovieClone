@@ -2,14 +2,16 @@ package com.example.movieclone.repo
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.movieclone.data.Constants.Companion.ENDING_PAGE
+import com.example.movieclone.data.Constants.Companion.STARTING_PAGE
 import com.example.movieclone.data.MovieList
 import com.example.movieclone.data.Movies
 import com.example.movieclone.di.MovieRepo
 import retrofit2.HttpException
 import java.io.IOException
 
-public const val STARTING_PAGE =1;
-public  const val ENDING_PAGE = 500;
+
+
 class MoviePagingSource(private val movieRepository: MovieRepo) :
     PagingSource<Int, MovieList>() {
 
@@ -22,10 +24,10 @@ class MoviePagingSource(private val movieRepository: MovieRepo) :
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieList> {
 
-        val page = params?.key ?: STARTING_PAGE
+        val page = params.key ?: STARTING_PAGE
 
        return  try {
-            val response =movieRepository.getPopularMovies()
+            val response =movieRepository.getPopularMovies(page)
             LoadResult.Page(
                 prevKey = if(page == STARTING_PAGE) null else page-1,
                 nextKey = if(page == ENDING_PAGE) null else page +1,
