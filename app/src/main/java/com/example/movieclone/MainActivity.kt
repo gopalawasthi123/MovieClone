@@ -25,14 +25,10 @@ class MainActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val fm = supportFragmentManager
         fm.beginTransaction()
-            .replace(R.id.fragmentContainerView,homeFragment)
+            .add(R.id.fragmentContainerView,homeFragment)
             .commit()
 
-        binding.fab.setOnClickListener{
-            val searchFragment = SearchFragment()
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,searchFragment)
-                .addToBackStack(null).commit()
-        }
+
     }
 
 }

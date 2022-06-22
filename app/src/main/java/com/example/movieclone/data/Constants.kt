@@ -8,5 +8,6 @@ class Constants {
         const val NETWORK_PAGE_SIZE = 25
         const val STARTING_PAGE =1;
         const val ENDING_PAGE = 500;
+        const val BACKSTACK_NAME ="HomeBackStack"
     }
 }

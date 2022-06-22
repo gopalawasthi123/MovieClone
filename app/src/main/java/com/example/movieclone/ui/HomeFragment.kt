@@ -38,10 +38,15 @@ class HomeFragment : Fragment() {
         homeBinding.recyclerVIew.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
 
-
         homeBinding.showAllPopularMovies.setOnClickListener{
             val fragment = AllMoviesFragment()
-            activity?.supportFragmentManager?.beginTransaction()?.add(R.id.fragmentContainerView,fragment)?.addToBackStack(null)?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragmentContainerView,fragment)?.addToBackStack(null)?.commit()
+        }
+
+        homeBinding.fab.setOnClickListener{
+            val searchFragment = SearchFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragmentContainerView,searchFragment)
+                ?.addToBackStack(null)?.commit()
         }
         viewmodel.movieList.observe(viewLifecycleOwner) {
             movies -> movies?.let { moviesAdapter.submitList(it) }
@@ -51,12 +56,7 @@ class HomeFragment : Fragment() {
             viewmodel.getMoviesListFromRepository()
         }
 
-        activity?.onBackPressedDispatcher?.addCallback(object  : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                activity?.finish()
-            }
 
-        })
         return view
     }
 
