@@ -30,10 +30,19 @@ class MovieRepository @Inject constructor(private val movieRepo: MovieRepo) {
                 enablePlaceholders = true,
                 initialLoadSize = 2
             ),
-            pagingSourceFactory = {MoviePagingSource(movieRepo)}
+            pagingSourceFactory = {MoviePagingSource(movieRepo,"")}
         ).flow
-
     }
 
+    fun getSearchMovies(query: String) : Flow<PagingData<MovieList>>{
+        return  Pager(
+            config = PagingConfig(
+                pageSize = Constants.NETWORK_PAGE_SIZE,
+                enablePlaceholders = true,
+                initialLoadSize = 2
+            ),
+            pagingSourceFactory = {MoviePagingSource(movieRepo,query)}
+        ).flow
+    }
 
 }

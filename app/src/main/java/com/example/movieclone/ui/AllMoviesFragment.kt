@@ -39,14 +39,6 @@ class AllMoviesFragment : Fragment(){
         binding.recyclerFullMovie.adapter = adapter
         binding.recyclerFullMovie.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
 
-        val items = viewmodel.fullMovieList
-
-         viewLifecycleOwner.lifecycleScope.launch{
-             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                items.collectLatest { adapter.submitData(it) }
-            }
-        }
-
         viewLifecycleOwner.lifecycleScope.launch{
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 adapter.loadStateFlow.collect{
@@ -55,6 +47,16 @@ class AllMoviesFragment : Fragment(){
                 }
             }
         }
+
+        val items = viewmodel.fullMovieList
+
+
+         viewLifecycleOwner.lifecycleScope.launch{
+             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                items.collectLatest { adapter.submitData(it) }
+            }
+        }
+
 
         return binding.root
     }

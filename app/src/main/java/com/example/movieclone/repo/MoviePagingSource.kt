@@ -12,7 +12,7 @@ import java.io.IOException
 
 
 
-class MoviePagingSource(private val movieRepository: MovieRepo) :
+class MoviePagingSource(private val movieRepository: MovieRepo, private val query : String) :
     PagingSource<Int, MovieList>() {
 
     override fun getRefreshKey(state: PagingState<Int, MovieList>): Int? {
@@ -27,7 +27,8 @@ class MoviePagingSource(private val movieRepository: MovieRepo) :
         val page = params.key ?: STARTING_PAGE
 
        return  try {
-            val response =movieRepository.getPopularMovies(page)
+           // val response =movieRepository.getPopularMovies(page)
+            val response = movieRepository.searchMovies(query,page)
             LoadResult.Page(
                 prevKey = if(page == STARTING_PAGE) null else page-1,
                 nextKey = if(page == ENDING_PAGE) null else page +1,

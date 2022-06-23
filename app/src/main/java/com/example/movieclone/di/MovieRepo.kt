@@ -11,5 +11,5 @@ interface MovieRepo {
   suspend fun getPopularMovies(@Query("page")page : Int) : Response<Movies>
 
   @GET("search/movie")
-  suspend fun searchMovies(@Query("query") query: String) : Response<Movies>
+  suspend fun searchMovies(@Query("query") query: String,@Query("page")page : Int) : Response<Movies>
 }
