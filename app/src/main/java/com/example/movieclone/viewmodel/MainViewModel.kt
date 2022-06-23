@@ -1,5 +1,6 @@
 package com.example.movieclone.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +21,7 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
 
     private val _moviesList = MutableLiveData<List<MovieList>>()
 
-    val movieList = _moviesList
+    val movieList  = _moviesList as LiveData<List<MovieList>>
 
     suspend fun getMoviesListFromRepository() {
         movieRepository.getPopularMovies()?.let {
@@ -30,10 +31,8 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
 
     val fullMovieList = movieRepository.getAllMovies().cachedIn(viewModelScope)
 
-    private var _stateFlow = MutableStateFlow<PagingData<MovieList>>(PagingData.empty())
 
-
-    suspend fun getSearchMovies(query: String): kotlinx.coroutines.flow.Flow<PagingData<MovieList>> {
+     fun getSearchMovies(query: String): kotlinx.coroutines.flow.Flow<PagingData<MovieList>> {
        return movieRepository.getSearchMovies(query)
     }
 }

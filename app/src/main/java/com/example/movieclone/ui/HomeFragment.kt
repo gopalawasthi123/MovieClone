@@ -48,6 +48,7 @@ class HomeFragment : Fragment() {
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragmentContainerView,searchFragment)
                 ?.addToBackStack(null)?.commit()
         }
+
         viewmodel.movieList.observe(viewLifecycleOwner) {
             movies -> movies?.let { moviesAdapter.submitList(it) }
         }
@@ -55,9 +56,8 @@ class HomeFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewmodel.getMoviesListFromRepository()
         }
-
-
         return view
+
     }
 
 
