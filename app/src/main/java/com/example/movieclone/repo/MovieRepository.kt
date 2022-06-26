@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.movieclone.data.Constants
+import com.example.movieclone.data.ItemClass
 import com.example.movieclone.data.MovieList
 import com.example.movieclone.di.MovieRepo
 import kotlinx.coroutines.flow.Flow
@@ -23,25 +24,25 @@ class MovieRepository @Inject constructor(private val movieRepo: MovieRepo) {
         return null
     }
 
-    fun getAllMovies()  : Flow<PagingData<MovieList>>{
+    fun getAllMovies(itemClass: ItemClass)  : Flow<PagingData<MovieList>>{
         return  Pager(
             config = PagingConfig(
                 pageSize = Constants.NETWORK_PAGE_SIZE,
                 enablePlaceholders = true,
                 initialLoadSize = 2
             ),
-            pagingSourceFactory = {MoviePagingSource(movieRepo,"")}
+            pagingSourceFactory = {MoviePagingSource(movieRepo,itemClass)}
         ).flow
     }
 
-    fun getSearchMovies(query: String) : Flow<PagingData<MovieList>>{
+    fun getSearchMovies(itemClass: ItemClass,query: String) : Flow<PagingData<MovieList>>{
         return  Pager(
             config = PagingConfig(
                 pageSize = Constants.NETWORK_PAGE_SIZE,
                 enablePlaceholders = true,
                 initialLoadSize = 2
             ),
-            pagingSourceFactory = {MoviePagingSource(movieRepo,query)}
+            pagingSourceFactory = {MoviePagingSource(movieRepo,itemClass = itemClass,query)}
         ).flow
     }
 

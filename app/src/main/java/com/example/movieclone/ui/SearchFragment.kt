@@ -56,7 +56,7 @@ class SearchFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch{
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
         binding.searchItemView.getQueryTextChangeStateFlow()
-            .debounce(200)
+            .debounce(300)
             .filter { query ->
                 if (query.isEmpty()) {
                     adapter.submitData(PagingData.empty())
@@ -65,6 +65,7 @@ class SearchFragment : Fragment() {
                     return@filter true
                 }
             }
+            .distinctUntilChanged()
             .flatMapLatest { query ->
                viewmodel.getSearchMovies(query)
             }

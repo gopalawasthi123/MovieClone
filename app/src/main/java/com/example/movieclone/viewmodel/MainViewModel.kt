@@ -3,6 +3,7 @@ package com.example.movieclone.viewmodel
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.example.movieclone.data.ItemClass
 import com.example.movieclone.data.MovieList
 import com.example.movieclone.data.Movies
 import com.example.movieclone.repo.MovieRepository
@@ -31,11 +32,11 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
 
     val movieState = _movieState.asStateFlow()
 
-    val fullMovieList = movieRepository.getAllMovies().cachedIn(viewModelScope)
+    val fullMovieList = movieRepository.getAllMovies(ItemClass.ALL_MOVIES).cachedIn(viewModelScope)
 
 
      fun getSearchMovies(query: String) : StateFlow<PagingData<MovieList>>{
-       return movieRepository.getSearchMovies(query).stateIn(viewModelScope, SharingStarted.Eagerly,
+       return movieRepository.getSearchMovies(ItemClass.MOVIE_SEARCH,query).stateIn(viewModelScope, SharingStarted.Lazily,
            PagingData.empty())
     }
 }
