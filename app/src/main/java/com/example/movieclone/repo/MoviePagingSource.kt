@@ -27,8 +27,8 @@ class MoviePagingSource(private val movieRepository: MovieRepo, private val quer
         val page = params.key ?: STARTING_PAGE
 
        return  try {
-           // val response =movieRepository.getPopularMovies(page)
-            val response = movieRepository.searchMovies(query,page)
+            val response =movieRepository.getPopularMovies(page)
+            //val response = movieRepository.searchMovies(query,page)
             LoadResult.Page(
                 prevKey = if(page == STARTING_PAGE) null else page-1,
                 nextKey = if(page == ENDING_PAGE) null else page +1,

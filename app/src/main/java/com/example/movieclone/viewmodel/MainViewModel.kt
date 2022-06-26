@@ -1,15 +1,13 @@
 package com.example.movieclone.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.movieclone.data.MovieList
 import com.example.movieclone.data.Movies
 import com.example.movieclone.repo.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -21,7 +19,7 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
 
     private val _moviesList = MutableLiveData<List<MovieList>>()
 
-    val movieList  = _moviesList as LiveData<List<MovieList>>
+    val movieList : LiveData<List<MovieList>>  = _moviesList
 
     suspend fun getMoviesListFromRepository() {
         movieRepository.getPopularMovies()?.let {
@@ -29,10 +27,15 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
         }
     }
 
+    private val _movieState = MutableStateFlow<PagingData<MovieList>>(PagingData.empty())
+
+    val movieState = _movieState.asStateFlow()
+
     val fullMovieList = movieRepository.getAllMovies().cachedIn(viewModelScope)
 
 
-     fun getSearchMovies(query: String): kotlinx.coroutines.flow.Flow<PagingData<MovieList>> {
-       return movieRepository.getSearchMovies(query)
+     fun getSearchMovies(query: String) : StateFlow<PagingData<MovieList>>{
+       return movieRepository.getSearchMovies(query).stateIn(viewModelScope, SharingStarted.Eagerly,
+           PagingData.empty())
     }
 }

@@ -1,5 +1,4 @@
 package com.example.movieclone.ui
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movieclone.databinding.FragmentHomeBinding
 import com.example.movieclone.databinding.FragmentSearchBinding
 import com.example.movieclone.ui.adapters.ShowAllMoviesAdapter
 import com.example.movieclone.viewmodel.MainViewModel
@@ -26,6 +23,10 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
+
+ companion object{
+     const val SearchFragmentTag = "SearchFragment"
+ }
 
     private val viewmodel : MainViewModel by viewModels()
 
@@ -73,8 +74,6 @@ class SearchFragment : Fragment() {
             }
             }
         }
-
-
         return  binding.root
     }
 }

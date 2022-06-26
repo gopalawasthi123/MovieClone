@@ -1,6 +1,8 @@
 package com.example.movieclone.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     companion object{
-        public val AllMoviesFragmenTag ="AllMoviesFragment"
+        const val AllMoviesFragmentTag ="AllMoviesFragment"
+        const val HomeFragmentTag = "HomeFragment"
     }
 
     private val viewmodel : MainViewModel by viewModels()
@@ -54,12 +57,18 @@ class HomeFragment : Fragment() {
         }
 
         lifecycleScope.launchWhenStarted {
+            Log.d("Gopal","get movies from ViewModel")
             viewmodel.getMoviesListFromRepository()
         }
         return view
 
     }
 
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        Log.d("Gopal","on config changed is called")
+    }
 
 
 }
