@@ -1,5 +1,6 @@
 package com.example.movieclone.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -36,7 +37,8 @@ class MainViewModel @Inject constructor(private val movieRepository: MovieReposi
 
 
      fun getSearchMovies(query: String) : StateFlow<PagingData<MovieList>>{
-       return movieRepository.getSearchMovies(ItemClass.MOVIE_SEARCH,query).stateIn(viewModelScope, SharingStarted.Lazily,
+         Log.d("Gopal","getSearchMovies is called")
+       return movieRepository.getSearchMovies(ItemClass.MOVIE_SEARCH,query).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000),
            PagingData.empty())
     }
 }

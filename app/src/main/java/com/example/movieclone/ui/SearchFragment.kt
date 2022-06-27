@@ -55,7 +55,7 @@ class SearchFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch{
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-        binding.searchItemView.getQueryTextChangeStateFlow()
+        binding.searchItemView.getQueryTextChangeStateFlow(binding.searchItemView.query)
             .debounce(300)
             .filter { query ->
                 if (query.isEmpty()) {
@@ -79,9 +79,10 @@ class SearchFragment : Fragment() {
     }
 }
 
-fun SearchView.getQueryTextChangeStateFlow(): StateFlow<String> {
+fun SearchView.getQueryTextChangeStateFlow(searchVal : CharSequence): StateFlow<String> {
 
-    val query = MutableStateFlow("")
+    val mQuery = searchVal.toString()
+    val query = MutableStateFlow(mQuery)
 
     setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
